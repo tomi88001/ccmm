@@ -768,7 +768,7 @@ def easyMain():
         print("> End of process")
         return
 
-    thread_num = 400  # 默认线程数 400
+    thread_num = 800  # 默认线程数 400
 
     CheckerOption()
     if len(proxies) == 0:
