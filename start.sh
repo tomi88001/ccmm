@@ -20,8 +20,15 @@ pip3 install requests pysocks
 
 # 运行 Python 脚本，并后台执行
 PYTHON_SCRIPT="atk2.py"
-# nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
 
-python3 "$PYTHON_SCRIPT"
+if [ "$1" == "back" ]; then
+    if [ ! -d "$PYTHON_SCRIPT" ]; then
+        nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
+    fi
+else
+    python3 "$PYTHON_SCRIPT"
+fi
+
+
 
 echo "脚本已启动，日志保存在 output.log"
