@@ -22,6 +22,6 @@ pip3 install requests pysocks
 PYTHON_SCRIPT="atk2.py"
 # nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
 
-nohup python3 "$PYTHON_SCRIPT" &
+python3 "$PYTHON_SCRIPT"
 
 echo "脚本已启动，日志保存在 output.log"
