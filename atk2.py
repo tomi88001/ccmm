@@ -750,7 +750,8 @@ def easyMain():
     mode = "cc"  # 默认模式
 
     # url = str(input("> Input the target URL:")).strip()  # 仅保留 URL 输入
-    url = "https://m.dovmarkets.com"
+    # url = "https://m.dovmarkets.com"
+    url = "https://api.dovmarkets.com/api/check_login"
     prevent()
     ParseUrl(url)
 
