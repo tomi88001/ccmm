@@ -775,8 +775,8 @@ def easyMain():
         th.setDaemon(True)
         th.start()
     else:
-        multiple = 100  # 默认放大倍数 100
-        brute = False  # 默认不启用 Boost 模式
+        multiple = 1000  # 默认放大倍数 100
+        brute = True  # 默认不启用 Boost 模式
 
         event = threading.Event()
         print("> Building threads...")

@@ -12,7 +12,8 @@ fi
 
 # 激活虚拟环境
 source "$VENV_DIR/bin/activate"
-
+# source "venv/bin/activate"
+# python3 atk2.py
 # 安装依赖（确保 requests 和 pysocks 存在）
 pip3 install --upgrade pip
 pip3 install requests pysocks
