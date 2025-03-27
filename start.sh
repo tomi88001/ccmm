@@ -1,21 +1,24 @@
 #!/bin/bash
 
-# 设置虚拟环境目录
+# 指定虚拟环境目录
 VENV_DIR="venv"
 
-# 设置 Python 运行的脚本
-PYTHON_SCRIPT="atk2.py"
+# 如果虚拟环境不存在，则创建
+if [ ! -d "$VENV_DIR" ]; then
+    echo "虚拟环境不存在，正在创建..."
+    python3 -m venv "$VENV_DIR"
+    echo "虚拟环境创建完成！"
+fi
 
-# 进入虚拟环境
+# 激活虚拟环境
 source "$VENV_DIR/bin/activate"
 
-# 启动 Python 脚本，并将输出重定向到日志文件，后台运行
-nohup python "$PYTHON_SCRIPT" > atk2.log 2>&1 &
+# 安装依赖（确保 requests 和 pysocks 存在）
+pip3 install --upgrade pip
+pip3 install requests pysocks
 
-# 获取进程 ID (PID)
-echo $! > atk2.pid
+# 运行 Python 脚本，并后台执行
+PYTHON_SCRIPT="atk2.py"
+nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
 
-# 退出虚拟环境（防止影响其他操作）
-deactivate
-
-echo "Script started with PID: $(cat atk2.pid)"
+echo "脚本已启动，日志保存在 output.log"
