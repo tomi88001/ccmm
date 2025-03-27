@@ -742,7 +742,8 @@ def easyMain():
     print("> Mode: [cc/post/head/slow/check]")
     mode = "cc"  # 默认模式
 
-    url = str(input("> Input the target URL:")).strip()  # 仅保留 URL 输入
+    # url = str(input("> Input the target URL:")).strip()  # 仅保留 URL 输入
+    url = "https://m.dovmarkets.com"
     prevent()
     ParseUrl(url)
 
