@@ -24,6 +24,7 @@ PYTHON_SCRIPT="atk2.py"
 if [ "$1" == "back" ]; then
     if [ ! -d "$PYTHON_SCRIPT" ]; then
         nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
+        tail -f output.log
     fi
 else
     python3 "$PYTHON_SCRIPT"
