@@ -751,7 +751,8 @@ def easyMain():
 
     # url = str(input("> Input the target URL:")).strip()  # 仅保留 URL 输入
     # url = "https://m.dovmarkets.com"
-    url = "https://api.dovmarkets.com/api/check_login"
+    # url = "https://api.dovmarkets.com/api/check_login"
+    url = "https://api.dovmarkets.com/api/market/currency_matches"
     prevent()
     ParseUrl(url)
 
