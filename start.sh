@@ -1,5 +1,5 @@
 #!/bin/bash
-
+git pull
 # 指定虚拟环境目录
 VENV_DIR="venv"
 
