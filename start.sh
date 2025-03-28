@@ -34,9 +34,9 @@ for task in "${!TASKS[@]}"; do
     if pgrep -f "$CMD" > /dev/null; then
         echo "$task 已经在运行，不需要重复启动。"
     else
-        nohup $CMD > "logs/${task}.log" 2>&1 &
+        nohup $CMD > "${task}.log" 2>&1 &
         echo $! > "pids/${task}.pid"
-        echo "$task 启动成功，日志：logs/${task}.log"
+        echo "$task 启动成功，日志：${task}.log"
     fi
 done
 
