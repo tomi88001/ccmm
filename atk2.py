@@ -653,10 +653,13 @@ def downloadsocks(choice):
         # except:
         #     pass
         try:
-            # r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
-            # f.write(r.content)
             r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
                              timeout=5)
+            f.write(r.content)
+        except:
+            pass
+        try:
+            r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
             f.write(r.content)
             f.close()
         except:
@@ -798,7 +801,7 @@ def easyMain():
         th.setDaemon(True)
         th.start()
     else:
-        multiple = 1000  # 默认放大倍数 100
+        multiple = 100  # 默认放大倍数 100
         brute = False  # 默认不启用 Boost 模式
 
         event = threading.Event()
