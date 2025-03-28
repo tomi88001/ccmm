@@ -654,18 +654,18 @@ def downloadsocks(choice):
     if choice == "5":
         filename = "socks5.txt"
         with open(filename, 'wb') as f:
-        for url in ip5List:
-            try:
-                r = requests.get(url, timeout=5)
-                if r.status_code == 200:
-                    f.write(r.content)
-                    print(f"> Successfully downloaded from {url}")
-                else:
-                    print(f"> Failed to download from {url} (Status code: {r.status_code})")
-            except Exception as e:
-                print(f"> Error occurred while downloading from {url}: {e}")
+            for url in ip5List:
+                try:
+                    r = requests.get(url, timeout=5)
+                    if r.status_code == 200:
+                        f.write(r.content)
+                        print(f"> Successfully downloaded from {url}")
+                    else:
+                        print(f"> Failed to download from {url} (Status code: {r.status_code})")
+                except Exception as e:
+                    print(f"> Error occurred while downloading from {url}: {e}")
 
-    print(f"> Have already downloaded proxies as {filename}")
+        print(f"> Have already downloaded proxies as {filename}")
 
 
 
