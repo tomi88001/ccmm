@@ -1,28 +1,17 @@
 #!/bin/bash
 
-echo "Stopping all atk2.py processes..."
 
-# 找到所有 atk2.py 进程
-PIDS=$(pgrep -f "python3 atk2.py")
-
-if [ -n "$PIDS" ]; then
-    echo "Found processes: $PIDS"
-
-    # 先尝试普通 kill
-    kill $PIDS
-    sleep 2  # 等待 2 秒，看看进程是否退出
-
-    # 检查是否还有存活进程
-    PIDS=$(pgrep -f "python3 atk2.py")
-    if [ -n "$PIDS" ]; then
-        echo "Processes still running, force killing..."
-        kill -9 $PIDS
+for pid in $(pgrep -f 'python3 atk2'); do  # 使用 pgrep -f 来精确匹配整个命令
+    echo "Force stopping process with PID: $pid"
+    
+    # 强制终止进程
+    kill -9 "$pid"
+    
+    # 打印已停止进程的信息
+    if ! ps -p "$pid" > /dev/null; then
+        echo "Process $pid 已被强制停止"
+    else
+        echo "Failed to stop process $pid"
     fi
+done
 
-    echo "All atk2.py processes stopped."
-else
-    echo "No atk2.py process found."
-fi
-
-# 确保清理 PID 文件（如果存在）
-rm -f atk2.pid
