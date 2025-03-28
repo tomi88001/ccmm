@@ -11,7 +11,7 @@ if [ ! -d "$VENV_DIR" ]; then
 fi
 
 # 激活虚拟环境
-source "$VENV_DIR/bin/activate"
+. "$VENV_DIR/bin/activate"
 # source "venv/bin/activate"
 # python3 atk2.py
 # 安装依赖（确保 requests 和 pysocks 存在）
