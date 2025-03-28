@@ -654,7 +654,7 @@ def downloadsocks(choice):
     if choice == "5":
         filename = "socks5.txt"
         with open(filename, 'wb') as f:
-        for url in urls:
+        for url in ip5List:
             try:
                 r = requests.get(url, timeout=5)
                 if r.status_code == 200:
