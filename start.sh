@@ -22,11 +22,11 @@ pip3 install -r requirements.txt
 
 # 任务列表（可以添加多个任务）
 # socks_type 0：所有类型 1：HTTP代理 4：SOCKS4 5：SOCKS5 6：随机选择
-# python3 start.py <method> <url> <socks_type> <threads> <代理列表> <rpc> <持续时间>
+# python3 start.py <method> <url> <socks_type> <进程> <代理列表> <rpc> <持续时间>
 declare -A TASKS
-TASKS["task1"]="python3 start.py GET https://api.dovmarkets.com 6 200 proxy.txt 100 10800"
-TASKS["task2"]="python3 start.py GET https://api.gtcfxvip.cc 6 200 proxy.txt 100 10800"
-TASKS["task3"]="python3 start.py GET https://api.axciones.com 6 200 proxy.txt 100 10800"
+TASKS["task1"]="python3 start.py GET https://api.dovmarkets.com 6 300 proxy.txt 200 10800"
+TASKS["task2"]="python3 start.py GET https://api.gtcfxvip.cc 6 300 proxy.txt 200 10800"
+TASKS["task3"]="python3 start.py GET https://api.axciones.com 6 300 proxy.txt 200 10800"
 
 # 遍历任务并启动
 for task in "${!TASKS[@]}"; do
