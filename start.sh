@@ -20,7 +20,7 @@ pip3 install requests pysocks
 
 # 运行 Python 脚本，并后台执行
 PYTHON_SCRIPT="atk2.py"
-
+sh stop.sh
 if [ "$1" == "back" ]; then
     if [ ! -d "$PYTHON_SCRIPT" ]; then
         nohup python3 "$PYTHON_SCRIPT" > output.log 2>&1 &
