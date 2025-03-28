@@ -762,8 +762,8 @@ def easyMain():
 
     cookies = ""  # 默认无 Cookies
 
-    choice = "5"  # 默认 SOCKS5
-    socks_type = 5
+    choice = "4"  # 默认 SOCKS5
+    socks_type = 4
 
     if mode == "check":
         CheckerOption()
