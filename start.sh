@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git pull  # 更新代码
-
+sh stop.sh
 # 指定虚拟环境目录
 VENV_DIR="venv"
 
