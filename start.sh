@@ -14,7 +14,9 @@ fi
 
 # 激活虚拟环境
 source "$VENV_DIR/bin/activate"
-
+# python3 -m venv venv
+# source venv/bin/activate
+# deactivate
 # 安装依赖
 pip3 install -r requirements.txt
 
@@ -22,9 +24,9 @@ pip3 install -r requirements.txt
 # socks_type 0：所有类型 1：HTTP代理 4：SOCKS4 5：SOCKS5 6：随机选择
 # python3 start.py <method> <url> <socks_type> <threads> <代理列表> <rpc> <持续时间>
 declare -A TASKS
-TASKS["task1"]="python3 start.py GET https://api.dovmarkets.com 6 200 100 60"
-# TASKS["task2"]="python3 start.py GET https://api.gtcfxvip.cc 6 200 proxy.txt 100 60"
-# TASKS["task3"]="python3 start.py GET https://api.axciones.com 6 200 proxy.txt 100 60"
+TASKS["task1"]="python3 start.py GET https://api.dovmarkets.com 6 200 proxy.txt 100 10800"
+TASKS["task2"]="python3 start.py GET https://api.gtcfxvip.cc 6 200 proxy.txt 100 10800"
+TASKS["task3"]="python3 start.py GET https://api.axciones.com 6 200 proxy.txt 100 10800"
 
 # 遍历任务并启动
 for task in "${!TASKS[@]}"; do
