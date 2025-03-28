@@ -572,7 +572,33 @@ def check_list(socks_file):
         rfile.write(bytes(i, encoding='utf-8'))
     rfile.close()
 
-
+ip5List=[
+    "https://raw.githubusercontent.com/B4RC0DE-TM/proxy-list/main/SOCKS5.txt",
+    "https://raw.githubusercontent.com/saschazesiger/Free-Proxies/master/proxies/socks5.txt",
+    "https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt",
+    "https://raw.githubusercontent.com/HyperBeats/proxy-list/main/socks5.txt",
+    "https://api.openproxylist.xyz/socks5.txt",
+    "https://api.proxyscrape.com/?request=displayproxies&proxytype=socks5",
+    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5",
+    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5",
+    "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all&simplified=true",
+    "https://proxyspace.pro/socks5.txt",
+    "https://raw.githubusercontent.com/manuGMG/proxy-365/main/SOCKS5.txt",
+    "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies/socks5.txt",
+    "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies_anonymous/socks5.txt",
+    "https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies-socks5.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt",
+    "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
+    "https://raw.githubusercontent.com/BlackSnowDot/proxylist-update-every-minute/main/socks.txt",
+    "http://worm.rip/socks5.txt",
+    "http://www.socks24.org/feeds/posts/default",
+    "https://www.freeproxychecker.com/result/socks5_proxies.txt",
+    "https://www.proxy-list.download/api/v1/get?type=socks5",
+    "https://www.proxyscan.io/download?type=socks5",
+    "https://www.my-proxy.com/free-socks-5-proxy.html"
+]
 def downloadsocks(choice):
     if choice == "4":
         f = open("socks4.txt", 'wb')
@@ -626,45 +652,21 @@ def downloadsocks(choice):
             pass
         print("> Have already downloaded socks4 list as socks4.txt")
     if choice == "5":
-        f = open("socks5.txt", 'wb')
-        try:
-            # r = requests.get(
-            #     "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all&simplified=true",
-            #     timeout=5)
-            # f.write(r.content)
-            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
-                             timeout=5)
-            f.write(r.content)
-        except:
-            pass
-        # try:
-        #     r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks5", timeout=5)
-        #     f.write(r.content)
-        # except:
-        #     pass
-        # try:
-        #     r = requests.get("https://www.proxyscan.io/download?type=socks5", timeout=5)
-        #     f.write(r.content)
-        # except:
-        #     pass
-        # try:
-        #     r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt", timeout=5)
-        #     f.write(r.content)
-        # except:
-        #     pass
-        try:
-            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
-                             timeout=5)
-            f.write(r.content)
-        except:
-            pass
-        try:
-            r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
-            f.write(r.content)
-            f.close()
-        except:
-            f.close()
-        print("> Have already downloaded socks5 list as socks5.txt")
+        filename = "socks5.txt"
+        with open(filename, 'wb') as f:
+        for url in urls:
+            try:
+                r = requests.get(url, timeout=5)
+                if r.status_code == 200:
+                    f.write(r.content)
+                    print(f"> Successfully downloaded from {url}")
+                else:
+                    print(f"> Failed to download from {url} (Status code: {r.status_code})")
+            except Exception as e:
+                print(f"> Error occurred while downloading from {url}: {e}")
+
+    print(f"> Have already downloaded proxies as {filename}")
+
 
 
 def prevent():
