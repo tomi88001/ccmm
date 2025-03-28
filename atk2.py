@@ -578,11 +578,16 @@ def downloadsocks(choice):
         f = open("socks4.txt", 'wb')
         try:
 
-            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
-                             timeout=5)
+            # r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+            #                  timeout=5)
+            # f.write(r.content)
+           
+            # r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+            #                  timeout=5)
+            # f.write(r.content)
             # r = requests.get("https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks4&country=anonymous",
             #                  timeout=5)
-            f.write(r.content)
+            # f.write(r.content)
         except:
             pass
         try:
@@ -623,27 +628,34 @@ def downloadsocks(choice):
     if choice == "5":
         f = open("socks5.txt", 'wb')
         try:
-            r = requests.get(
-                "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all&simplified=true",
-                timeout=5)
+            # r = requests.get(
+            #     "https://api.proxyscrape.com/v2/?request=getproxies&protocol=socks5&timeout=10000&country=all&simplified=true",
+            #     timeout=5)
+            # f.write(r.content)
+            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+                             timeout=5)
+            f.write(r.content)
+           
+            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+                             timeout=5)
             f.write(r.content)
         except:
             pass
-        try:
-            r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks5", timeout=5)
-            f.write(r.content)
-        except:
-            pass
-        try:
-            r = requests.get("https://www.proxyscan.io/download?type=socks5", timeout=5)
-            f.write(r.content)
-        except:
-            pass
-        try:
-            r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt", timeout=5)
-            f.write(r.content)
-        except:
-            pass
+        # try:
+        #     r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks5", timeout=5)
+        #     f.write(r.content)
+        # except:
+        #     pass
+        # try:
+        #     r = requests.get("https://www.proxyscan.io/download?type=socks5", timeout=5)
+        #     f.write(r.content)
+        # except:
+        #     pass
+        # try:
+        #     r = requests.get("https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt", timeout=5)
+        #     f.write(r.content)
+        # except:
+        #     pass
         try:
             r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
             f.write(r.content)
@@ -762,8 +774,8 @@ def easyMain():
 
     cookies = ""  # 默认无 Cookies
 
-    choice = "4"  # 默认 SOCKS5
-    socks_type = 4
+    choice = "5"  # 默认 SOCKS5
+    socks_type = 5
 
     if mode == "check":
         CheckerOption()
