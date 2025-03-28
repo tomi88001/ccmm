@@ -576,7 +576,7 @@ def check_list(socks_file):
 def downloadsocks(choice):
     if choice == "4":
         f = open("socks4.txt", 'wb')
-        try:
+        # try:
 
             # r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
             #                  timeout=5)
@@ -588,8 +588,8 @@ def downloadsocks(choice):
             # r = requests.get("https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks4&country=anonymous",
             #                  timeout=5)
             # f.write(r.content)
-        except:
-            pass
+        # except:
+        #     pass
         try:
             r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks4", timeout=5)
             f.write(r.content)
