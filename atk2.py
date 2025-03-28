@@ -635,10 +635,6 @@ def downloadsocks(choice):
             r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
                              timeout=5)
             f.write(r.content)
-           
-            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
-                             timeout=5)
-            f.write(r.content)
         except:
             pass
         # try:
@@ -657,7 +653,10 @@ def downloadsocks(choice):
         # except:
         #     pass
         try:
-            r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
+            # r = requests.get("https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt", timeout=5)
+            # f.write(r.content)
+            r = requests.get("https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+                             timeout=5)
             f.write(r.content)
             f.close()
         except:
