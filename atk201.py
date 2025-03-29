@@ -597,7 +597,9 @@ ip5List=[
     "https://www.freeproxychecker.com/result/socks5_proxies.txt",
     "https://www.proxy-list.download/api/v1/get?type=socks5",
     "https://www.proxyscan.io/download?type=socks5",
-    "https://www.my-proxy.com/free-socks-5-proxy.html"
+    "https://www.my-proxy.com/free-socks-5-proxy.html",
+    "https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=8bfrxdw2rwhlx5hc7eyo&type=getproxies&country[]=all&protocol=http&format=normal&status=all",
+    "https://api.proxyscrape.com/v2/account/datacenter_shared/proxy-list?auth=ohexj26x5quhkr73e98u&type=getproxies&country[]=all&protocol=http&format=normal&status=all"
 ]
 def downloadsocks(choice):
     if choice == "4":
